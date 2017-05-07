@@ -1,0 +1,9 @@
+C:\Users\paulo\Documents\Visual Studio 2017\Projects\GGRefrigeracao\GGRefrigeracao\obj\Debug\GGRefrigeracao.csprojResolveAssemblyReference.cache
+C:\Users\paulo\Documents\Visual Studio 2017\Projects\GGRefrigeracao\GGRefrigeracao\obj\Debug\GGRefrigeracao.Properties.Resources.resources
+C:\Users\paulo\Documents\Visual Studio 2017\Projects\GGRefrigeracao\GGRefrigeracao\obj\Debug\GGRefrigeracao.csproj.GenerateResource.Cache
+C:\Users\paulo\Documents\Visual Studio 2017\Projects\GGRefrigeracao\GGRefrigeracao\bin\Debug\GGRefrigeracao.exe.config
+C:\Users\paulo\Documents\Visual Studio 2017\Projects\GGRefrigeracao\GGRefrigeracao\bin\Debug\GGRefrigeracao.exe
+C:\Users\paulo\Documents\Visual Studio 2017\Projects\GGRefrigeracao\GGRefrigeracao\bin\Debug\GGRefrigeracao.pdb
+C:\Users\paulo\Documents\Visual Studio 2017\Projects\GGRefrigeracao\GGRefrigeracao\obj\Debug\GGRefrigeracao.exe
+C:\Users\paulo\Documents\Visual Studio 2017\Projects\GGRefrigeracao\GGRefrigeracao\obj\Debug\GGRefrigeracao.pdb
+C:\Users\paulo\documents\visual studio 2017\Projects\GGRefrigeracao\GGRefrigeracao\obj\Debug\GGRefrigeracao.modelo.FServico.resources
