@@ -63,7 +63,6 @@ namespace GGRefrigeracao.modelo
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-            Limpar();
         }
     }
 }
