@@ -45,6 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="controle\ctrlAr.cs" />
+    <Compile Include="controle\ctrlCliente.cs" />
+    <Compile Include="controle\ctrlServico.cs" />
     <Compile Include="DBGGRefrigeracaoDataSet.cs">
       <DependentUpon>DBGGRefrigeracaoDataSet.xsd</DependentUpon>
     </Compile>

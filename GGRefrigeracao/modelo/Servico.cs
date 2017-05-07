@@ -11,7 +11,9 @@ namespace GGRefrigeracao.modelo
         public int Codigo { get; set; }
         public string Endereco { get; set; }
         public DateTime Data { get; set; }
-        public double Valor { get; set; }
+        public decimal Valor { get; set; }
+        public int CodigoCliente { get; set; }
+        public int CodigoAr { get; set; }
 
     }
 }

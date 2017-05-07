@@ -34,13 +34,13 @@ namespace GGRefrigeracao {
         
         private ServicoDataTable tableServico;
         
-        private global::System.Data.DataRelation relationFK_Btu_Ar;
-        
         private global::System.Data.DataRelation relationFK_Fabricante_Ar;
         
-        private global::System.Data.DataRelation relationFK_Ar_Servico;
+        private global::System.Data.DataRelation relationFK_Btu_Ar;
         
         private global::System.Data.DataRelation relationFK_Cliente_Servico;
+        
+        private global::System.Data.DataRelation relationFK_Ar_Servico;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -298,10 +298,10 @@ namespace GGRefrigeracao {
                     this.tableServico.InitVars();
                 }
             }
-            this.relationFK_Btu_Ar = this.Relations["FK_Btu_Ar"];
             this.relationFK_Fabricante_Ar = this.Relations["FK_Fabricante_Ar"];
-            this.relationFK_Ar_Servico = this.Relations["FK_Ar_Servico"];
+            this.relationFK_Btu_Ar = this.Relations["FK_Btu_Ar"];
             this.relationFK_Cliente_Servico = this.Relations["FK_Cliente_Servico"];
+            this.relationFK_Ar_Servico = this.Relations["FK_Ar_Servico"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -323,13 +323,6 @@ namespace GGRefrigeracao {
             this.tableServico = new ServicoDataTable();
             base.Tables.Add(this.tableServico);
             global::System.Data.ForeignKeyConstraint fkc;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_Btu_Ar", new global::System.Data.DataColumn[] {
-                        this.tableBtu.CodigoColumn}, new global::System.Data.DataColumn[] {
-                        this.tableAr.CodigoBtuColumn});
-            this.tableAr.Constraints.Add(fkc);
-            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
-            fkc.DeleteRule = global::System.Data.Rule.Cascade;
-            fkc.UpdateRule = global::System.Data.Rule.Cascade;
             fkc = new global::System.Data.ForeignKeyConstraint("FK_Fabricante_Ar", new global::System.Data.DataColumn[] {
                         this.tableFabricante.CodigoColumn}, new global::System.Data.DataColumn[] {
                         this.tableAr.CodigoFabricanteColumn});
@@ -337,10 +330,10 @@ namespace GGRefrigeracao {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_Ar_Servico", new global::System.Data.DataColumn[] {
-                        this.tableAr.CodigoColumn}, new global::System.Data.DataColumn[] {
-                        this.tableServico.CodigoClienteColumn});
-            this.tableServico.Constraints.Add(fkc);
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_Btu_Ar", new global::System.Data.DataColumn[] {
+                        this.tableBtu.CodigoColumn}, new global::System.Data.DataColumn[] {
+                        this.tableAr.CodigoBtuColumn});
+            this.tableAr.Constraints.Add(fkc);
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
@@ -351,22 +344,29 @@ namespace GGRefrigeracao {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            this.relationFK_Btu_Ar = new global::System.Data.DataRelation("FK_Btu_Ar", new global::System.Data.DataColumn[] {
-                        this.tableBtu.CodigoColumn}, new global::System.Data.DataColumn[] {
-                        this.tableAr.CodigoBtuColumn}, false);
-            this.Relations.Add(this.relationFK_Btu_Ar);
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_Ar_Servico", new global::System.Data.DataColumn[] {
+                        this.tableAr.CodigoColumn}, new global::System.Data.DataColumn[] {
+                        this.tableServico.CodigoClienteColumn});
+            this.tableServico.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
+            fkc.DeleteRule = global::System.Data.Rule.Cascade;
+            fkc.UpdateRule = global::System.Data.Rule.Cascade;
             this.relationFK_Fabricante_Ar = new global::System.Data.DataRelation("FK_Fabricante_Ar", new global::System.Data.DataColumn[] {
                         this.tableFabricante.CodigoColumn}, new global::System.Data.DataColumn[] {
                         this.tableAr.CodigoFabricanteColumn}, false);
             this.Relations.Add(this.relationFK_Fabricante_Ar);
-            this.relationFK_Ar_Servico = new global::System.Data.DataRelation("FK_Ar_Servico", new global::System.Data.DataColumn[] {
-                        this.tableAr.CodigoColumn}, new global::System.Data.DataColumn[] {
-                        this.tableServico.CodigoClienteColumn}, false);
-            this.Relations.Add(this.relationFK_Ar_Servico);
+            this.relationFK_Btu_Ar = new global::System.Data.DataRelation("FK_Btu_Ar", new global::System.Data.DataColumn[] {
+                        this.tableBtu.CodigoColumn}, new global::System.Data.DataColumn[] {
+                        this.tableAr.CodigoBtuColumn}, false);
+            this.Relations.Add(this.relationFK_Btu_Ar);
             this.relationFK_Cliente_Servico = new global::System.Data.DataRelation("FK_Cliente_Servico", new global::System.Data.DataColumn[] {
                         this.tableCliente.CodigoColumn}, new global::System.Data.DataColumn[] {
                         this.tableServico.CodigoClienteColumn}, false);
             this.Relations.Add(this.relationFK_Cliente_Servico);
+            this.relationFK_Ar_Servico = new global::System.Data.DataRelation("FK_Ar_Servico", new global::System.Data.DataColumn[] {
+                        this.tableAr.CodigoColumn}, new global::System.Data.DataColumn[] {
+                        this.tableServico.CodigoClienteColumn}, false);
+            this.Relations.Add(this.relationFK_Ar_Servico);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1764,7 +1764,7 @@ namespace GGRefrigeracao {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ServicoRow AddServicoRow(System.DateTime Data, double Valor, ArRow parentArRowByFK_Ar_Servico, int CodigoAr) {
+            public ServicoRow AddServicoRow(System.DateTime Data, double Valor, ClienteRow parentClienteRowByFK_Cliente_Servico, int CodigoAr) {
                 ServicoRow rowServicoRow = ((ServicoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1772,8 +1772,8 @@ namespace GGRefrigeracao {
                         Valor,
                         null,
                         CodigoAr};
-                if ((parentArRowByFK_Ar_Servico != null)) {
-                    columnValuesArray[3] = parentArRowByFK_Ar_Servico[0];
+                if ((parentClienteRowByFK_Cliente_Servico != null)) {
+                    columnValuesArray[3] = parentClienteRowByFK_Cliente_Servico[0];
                 }
                 rowServicoRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowServicoRow);
@@ -2016,23 +2016,23 @@ namespace GGRefrigeracao {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public BtuRow BtuRow {
-                get {
-                    return ((BtuRow)(this.GetParentRow(this.Table.ParentRelations["FK_Btu_Ar"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Btu_Ar"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public FabricanteRow FabricanteRow {
                 get {
                     return ((FabricanteRow)(this.GetParentRow(this.Table.ParentRelations["FK_Fabricante_Ar"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_Fabricante_Ar"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public BtuRow BtuRow {
+                get {
+                    return ((BtuRow)(this.GetParentRow(this.Table.ParentRelations["FK_Btu_Ar"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Btu_Ar"]);
                 }
             }
             
@@ -2297,23 +2297,23 @@ namespace GGRefrigeracao {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ArRow ArRow {
-                get {
-                    return ((ArRow)(this.GetParentRow(this.Table.ParentRelations["FK_Ar_Servico"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Ar_Servico"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ClienteRow ClienteRow {
                 get {
                     return ((ClienteRow)(this.GetParentRow(this.Table.ParentRelations["FK_Cliente_Servico"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_Cliente_Servico"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ArRow ArRow {
+                get {
+                    return ((ArRow)(this.GetParentRow(this.Table.ParentRelations["FK_Ar_Servico"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Ar_Servico"]);
                 }
             }
         }
@@ -3295,14 +3295,13 @@ namespace GGRefrigeracao.DBGGRefrigeracaoDataSetTableAdapters {
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE       Cliente\r\nSET                Nome = @Nome, Telefone = @Telefone, Ende" +
-                "reco = @Endereco\r\nWHERE        (Codigo = @Original_Codigo); \r\nSELECT Codigo, Nom" +
-                "e, Telefone FROM Cliente WHERE (Codigo = @Codigo)";
+                "reco = @Endereco\r\nWHERE        (Codigo = @Original_Codigo);   \r\nSELECT Codigo, N" +
+                "ome, Telefone FROM Cliente WHERE (Codigo = @Codigo)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Nome", global::System.Data.SqlDbType.VarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, "Nome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Telefone", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Telefone", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Endereco", global::System.Data.SqlDbType.VarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, "Endereco", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Codigo", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Codigo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Codigo", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Codigo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3315,15 +3314,28 @@ namespace GGRefrigeracao.DBGGRefrigeracaoDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        Codigo, Nome, Telefone, Endereco\r\nFROM            Cliente";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        TOP (1) Codigo\r\nFROM            Cliente\r\nORDER BY Codigo DESC";
+            this._commandCollection[1].CommandText = "SELECT        Codigo, Nome, Telefone, Endereco\r\nFROM            Cliente\r\nWHERE   " +
+                "     (Nome LIKE @Nome)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Nome", global::System.Data.SqlDbType.VarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, "Nome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT        Codigo, Nome, Telefone\r\nFROM            Cliente\r\nWHERE        (Tele" +
+                "fone LIKE @Telefone) OR\r\n                         (Nome LIKE @Nome)";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Telefone", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Telefone", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Nome", global::System.Data.SqlDbType.VarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, "Nome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = "SELECT        TOP (1) Codigo\r\nFROM            Cliente\r\nORDER BY Codigo DESC";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3345,6 +3357,90 @@ namespace GGRefrigeracao.DBGGRefrigeracaoDataSetTableAdapters {
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual DBGGRefrigeracaoDataSet.ClienteDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            DBGGRefrigeracaoDataSet.ClienteDataTable dataTable = new DBGGRefrigeracaoDataSet.ClienteDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillBy(DBGGRefrigeracaoDataSet.ClienteDataTable dataTable, string Nome) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((Nome == null)) {
+                throw new global::System.ArgumentNullException("Nome");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(Nome));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual DBGGRefrigeracaoDataSet.ClienteDataTable GetCliente(string Nome) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((Nome == null)) {
+                throw new global::System.ArgumentNullException("Nome");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(Nome));
+            }
+            DBGGRefrigeracaoDataSet.ClienteDataTable dataTable = new DBGGRefrigeracaoDataSet.ClienteDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillConsulta(DBGGRefrigeracaoDataSet.ClienteDataTable dataTable, string Telefone, string Nome) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((Telefone == null)) {
+                throw new global::System.ArgumentNullException("Telefone");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(Telefone));
+            }
+            if ((Nome == null)) {
+                throw new global::System.ArgumentNullException("Nome");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(Nome));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual DBGGRefrigeracaoDataSet.ClienteDataTable GetCodigo(string Telefone, string Nome) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((Telefone == null)) {
+                throw new global::System.ArgumentNullException("Telefone");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(Telefone));
+            }
+            if ((Nome == null)) {
+                throw new global::System.ArgumentNullException("Nome");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(Nome));
+            }
             DBGGRefrigeracaoDataSet.ClienteDataTable dataTable = new DBGGRefrigeracaoDataSet.ClienteDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -3450,7 +3546,7 @@ namespace GGRefrigeracao.DBGGRefrigeracaoDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Nome, string Telefone, string Endereco, int Original_Codigo, int Codigo) {
+        public virtual int Update(string Nome, string Telefone, string Endereco, int Original_Codigo) {
             if ((Nome == null)) {
                 throw new global::System.ArgumentNullException("Nome");
             }
@@ -3470,7 +3566,6 @@ namespace GGRefrigeracao.DBGGRefrigeracaoDataSetTableAdapters {
                 this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Endereco));
             }
             this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_Codigo));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Codigo));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3491,7 +3586,7 @@ namespace GGRefrigeracao.DBGGRefrigeracaoDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual global::System.Nullable<int> GetUltimoCodigo() {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3963,15 +4058,9 @@ namespace GGRefrigeracao.DBGGRefrigeracaoDataSetTableAdapters {
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Servico] WHERE (([Codigo] = @Original_Codigo) AND ([Data] = @O" +
-                "riginal_Data) AND ([Valor] = @Original_Valor) AND ([CodigoCliente] = @Original_C" +
-                "odigoCliente) AND ([CodigoAr] = @Original_CodigoAr))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM Servico\r\nWHERE        (Codigo = @Original_Codigo)";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Codigo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Codigo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Data", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Data", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Valor", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Valor", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CodigoCliente", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CodigoCliente", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CodigoAr", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CodigoAr", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Codigo", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Codigo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Servico] ([Data], [Valor], [CodigoCliente], [CodigoAr]) VALUES" +
@@ -3984,19 +4073,16 @@ namespace GGRefrigeracao.DBGGRefrigeracaoDataSetTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CodigoAr", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CodigoAr", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Servico] SET [Data] = @Data, [Valor] = @Valor, [CodigoCliente] = @CodigoCliente, [CodigoAr] = @CodigoAr WHERE (([Codigo] = @Original_Codigo) AND ([Data] = @Original_Data) AND ([Valor] = @Original_Valor) AND ([CodigoCliente] = @Original_CodigoCliente) AND ([CodigoAr] = @Original_CodigoAr));
+            this._adapter.UpdateCommand.CommandText = @"UPDATE       Servico
+SET                Data = @Data, Valor = @Valor, CodigoCliente = @CodigoCliente, CodigoAr = @CodigoAr
+WHERE        (Codigo = @Original_Codigo);  
 SELECT Codigo, Data, Valor, CodigoCliente, CodigoAr FROM Servico WHERE (Codigo = @Codigo)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Data", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Data", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Valor", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Valor", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CodigoCliente", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CodigoCliente", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CodigoAr", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CodigoAr", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Codigo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Codigo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Data", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Data", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Valor", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Valor", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CodigoCliente", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CodigoCliente", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CodigoAr", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CodigoAr", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Codigo", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Codigo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Data", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "Data", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Valor", global::System.Data.SqlDbType.Money, 8, global::System.Data.ParameterDirection.Input, 0, 0, "Valor", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CodigoCliente", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "CodigoCliente", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CodigoAr", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "CodigoAr", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Codigo", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Codigo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4073,12 +4159,8 @@ SELECT Codigo, Data, Valor, CodigoCliente, CodigoAr FROM Servico WHERE (Codigo =
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_Codigo, System.DateTime Original_Data, decimal Original_Valor, int Original_CodigoCliente, int Original_CodigoAr) {
+        public virtual int Delete(int Original_Codigo) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Codigo));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((System.DateTime)(Original_Data));
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((decimal)(Original_Valor));
-            this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_CodigoCliente));
-            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_CodigoAr));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4124,17 +4206,12 @@ SELECT Codigo, Data, Valor, CodigoCliente, CodigoAr FROM Servico WHERE (Codigo =
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(System.DateTime Data, decimal Valor, int CodigoCliente, int CodigoAr, int Original_Codigo, System.DateTime Original_Data, decimal Original_Valor, int Original_CodigoCliente, int Original_CodigoAr, int Codigo) {
+        public virtual int Update(System.DateTime Data, decimal Valor, int CodigoCliente, int CodigoAr, int Original_Codigo) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((System.DateTime)(Data));
             this.Adapter.UpdateCommand.Parameters[1].Value = ((decimal)(Valor));
             this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(CodigoCliente));
             this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(CodigoAr));
             this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_Codigo));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((System.DateTime)(Original_Data));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((decimal)(Original_Valor));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_CodigoCliente));
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_CodigoAr));
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Codigo));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4149,14 +4226,6 @@ SELECT Codigo, Data, Valor, CodigoCliente, CodigoAr FROM Servico WHERE (Codigo =
                     this.Adapter.UpdateCommand.Connection.Close();
                 }
             }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(System.DateTime Data, decimal Valor, int CodigoCliente, int CodigoAr, int Original_Codigo, System.DateTime Original_Data, decimal Original_Valor, int Original_CodigoCliente, int Original_CodigoAr) {
-            return this.Update(Data, Valor, CodigoCliente, CodigoAr, Original_Codigo, Original_Data, Original_Valor, Original_CodigoCliente, Original_CodigoAr, Original_Codigo);
         }
     }
     

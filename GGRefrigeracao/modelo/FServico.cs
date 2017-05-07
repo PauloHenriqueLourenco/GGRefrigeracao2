@@ -18,9 +18,15 @@ namespace GGRefrigeracao.modelo
             InitializeComponent();
         }
 
-        ServicoTableAdapter st = new ServicoTableAdapter();
         ClienteTableAdapter ct = new ClienteTableAdapter();
-        ArTableAdapter at = new ArTableAdapter();
+
+        Cliente c = new Cliente();
+        Servico s = new Servico();
+        Ar a = new Ar();
+
+        controle.ctrlCliente ctrlC = new controle.ctrlCliente();
+        controle.ctrlServico ctrlS = new controle.ctrlServico();
+        controle.ctrlAr ctrlA = new controle.ctrlServico();
 
         private void Limpar()
         {            
@@ -31,28 +37,25 @@ namespace GGRefrigeracao.modelo
             cmbBtu.SelectedIndex = -1;
             pickerData.Value = DateTime.Now;
             valorTextBox.Clear();            
-        }
+        }        
 
         private void FServico_Load(object sender, EventArgs e)
         {
-            this.clienteTableAdapter.Fill(this.dBGGRefrigeracaoDataSet.Cliente);
             this.btuTableAdapter.Fill(this.dBGGRefrigeracaoDataSet.Btu);
             this.fabricanteTableAdapter.Fill(this.dBGGRefrigeracaoDataSet.Fabricante);
         }
 
         private void btnInserir_Click(object sender, EventArgs e)
         {
-            int codigoCliente = 0;
-            ct.Insert(cmbNome.Text, telefoneTextBox.Text, enderecoTextBox.Text);     
-            try
+            c.Nome = cmbNome.Text;
+            c.Telefone = telefoneTextBox.Text;
+            c.Endereco = enderecoTextBox.Text;
+
+            int erro = ctrlC.InserirCliente(c);
+            if (erro == 0)
             {
-                codigoCliente = int.Parse(cmbNome.SelectedValue.ToString());
-            }
-            catch (NullReferenceException)
-            {
-                codigoCliente = int.Parse(ct.GetUltimoCodigo().ToString());
-            }
-            st.Insert(pickerData.Value, Decimal.Parse(valorTextBox.Text), codigoCliente, int.Parse(at.GetCodigoAr(int.Parse(cmbFabricante.SelectedValue.ToString()),int.Parse(cmbBtu.SelectedValue.ToString())).ToString()));
+                MessageBox.Show("Inclusão de cliente com êxito");
+            } 
             
         }
 
