@@ -17,7 +17,7 @@ namespace GGRefrigeracao.controle
             int rc = 0;
             try
             {
-                at.Insert()
+                at.Insert(a.CodigoFabricante, a.CodigoBtu);
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
@@ -27,12 +27,12 @@ namespace GGRefrigeracao.controle
             return rc;
         }
 
-        public int Alterar(modelo.Servico s)
+        public int Alterar(modelo.Ar a)
         {
             int rc = 0;
             try
             {
-                st.Update(s.Data, s.Valor, s.CodigoCliente, s.CodigoAr, s.Codigo);
+                at.Update(a.CodigoFabricante, a.CodigoBtu, a.Codigo);
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
@@ -42,12 +42,12 @@ namespace GGRefrigeracao.controle
             return rc;
         }
 
-        public int Excluir(modelo.Servico s)
+        public int Excluir(modelo.Ar a)
         {
             int rc = 0;
             try
             {
-                st.Delete(s.Codigo);
+                at.Delete(a.Codigo);
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
@@ -55,13 +55,27 @@ namespace GGRefrigeracao.controle
                 Console.WriteLine(ex.Message);
             }
             return rc;
+        }
+
+        public int GetCodigo(modelo.Ar a)
+        {
+            int codigo = 0;
+            try
+            {
+                codigo = int.Parse(at.GetCodigoAr(a.CodigoFabricante, a.CodigoBtu).ToString());
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return codigo;
         }
 
         public void CarregarTabela()
         {
             try
             {
-                st.GetData();
+                at.GetData();
             }
             catch (System.Data.SqlClient.SqlException ex)
             {

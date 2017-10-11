@@ -9,8 +9,8 @@ namespace GGRefrigeracao.modelo
     class Ar
     {
         public int Codigo { get; set; }
-        public string Fabricante { get; set; }
-        public int Btu { get; set; }
+        public int CodigoFabricante { get; set; }
+        public int CodigoBtu { get; set; }
 
     }
 }

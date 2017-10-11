@@ -14,7 +14,7 @@ namespace GGRefrigeracao.controle
         ClienteTableAdapter ct = new ClienteTableAdapter();
         ClienteDataTable ctbl = new ClienteDataTable();
 
-        public int InserirCliente(modelo.Cliente c)
+        public int Inserir(modelo.Cliente c)
         {
             int rc = 0;
             try
@@ -29,7 +29,7 @@ namespace GGRefrigeracao.controle
             return rc;
         }
 
-        public int AlterarCliente(modelo.Cliente c)
+        public int Alterar(modelo.Cliente c)
         {
             int rc = 0;
             try
@@ -44,7 +44,7 @@ namespace GGRefrigeracao.controle
             return rc;
         }
 
-        public int ExcluirCliente(modelo.Cliente c)
+        public int Excluir(modelo.Cliente c)
         {
             int rc = 0;
             try
@@ -59,47 +59,45 @@ namespace GGRefrigeracao.controle
             return rc;
         }
 
-        public void CarregarTabela()
-        {            
+        public ClienteDataTable CarregarTabela()
+        {
+            ctbl.Clear();
             try
             {
-                ct.GetData();
+                ct.Fill(ctbl);
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
                 Console.WriteLine(ex.Message);
             }
+            return ctbl;
         }
 
-        public ClienteTableAdapter ConsultarCliente(string nome)
+        public ClienteDataTable GetCodigo(modelo.Cliente c)
         {
             try
             {
-                ct.GetCliente("%"+nome+"%");
+                ct.FillConsulta(ctbl,c.Telefone,c.Nome,c.Endereco);
             }
-            catch (System.Data.SqlClient.SqlException ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            return ct;
+            return ctbl;
         }
 
-        public ClienteTableAdapter GetCodigo(modelo.Cliente c, out int codigoCliente)
+        public int GetCodigo()
         {
-            codigoCliente = 0;
+            int codigoCliente = 0;
             try
-            {
-                ct.FillConsulta(ctbl, c.Telefone, c.Nome);
-            }
-            catch (System.Data.SqlClient.SqlException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            if (ctbl.Rows.Count == 0)
             {
                 codigoCliente = int.Parse(ct.GetUltimoCodigo().ToString());
-            }                
-            return ct;
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }           
+            return codigoCliente;
         }
     }
 }

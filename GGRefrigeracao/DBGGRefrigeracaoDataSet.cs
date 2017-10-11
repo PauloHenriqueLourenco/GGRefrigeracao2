@@ -6,3 +6,10 @@
     {
     }
 }
+
+namespace GGRefrigeracao.DBGGRefrigeracaoDataSetTableAdapters {
+    
+    
+    public partial class ArTableAdapter {
+    }
+}

@@ -56,6 +56,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBGGRefrigeracaoDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="FCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FCliente.Designer.cs">
+      <DependentUpon>FCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="modelo\Ar.cs" />
     <Compile Include="modelo\Cliente.cs" />
     <Compile Include="modelo\FServico.cs">
@@ -68,6 +74,9 @@
     <Compile Include="modelo\Usuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FCliente.resx">
+      <DependentUpon>FCliente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="modelo\FServico.resx">
       <DependentUpon>FServico.cs</DependentUpon>
     </EmbeddedResource>
@@ -80,6 +89,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="ClassDiagram1.cd" />
     <None Include="DBGGRefrigeracaoDataSet.xsc">
       <DependentUpon>DBGGRefrigeracaoDataSet.xsd</DependentUpon>
     </None>

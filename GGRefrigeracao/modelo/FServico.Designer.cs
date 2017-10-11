@@ -37,8 +37,6 @@
             System.Windows.Forms.Label valorLabel;
             this.dBGGRefrigeracaoDataSet = new GGRefrigeracao.DBGGRefrigeracaoDataSet();
             this.clienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.clienteTableAdapter = new GGRefrigeracao.DBGGRefrigeracaoDataSetTableAdapters.ClienteTableAdapter();
-            this.tableAdapterManager = new GGRefrigeracao.DBGGRefrigeracaoDataSetTableAdapters.TableAdapterManager();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cmbNome = new System.Windows.Forms.ComboBox();
             this.enderecoTextBox = new System.Windows.Forms.TextBox();
@@ -50,11 +48,7 @@
             this.cmbFabricante = new System.Windows.Forms.ComboBox();
             this.fabricanteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.arBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.arTableAdapter = new GGRefrigeracao.DBGGRefrigeracaoDataSetTableAdapters.ArTableAdapter();
-            this.fabricanteTableAdapter = new GGRefrigeracao.DBGGRefrigeracaoDataSetTableAdapters.FabricanteTableAdapter();
-            this.btuTableAdapter = new GGRefrigeracao.DBGGRefrigeracaoDataSetTableAdapters.BtuTableAdapter();
             this.servicoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.servicoTableAdapter = new GGRefrigeracao.DBGGRefrigeracaoDataSetTableAdapters.ServicoTableAdapter();
             this.pickerData = new System.Windows.Forms.DateTimePicker();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.valorTextBox = new System.Windows.Forms.TextBox();
@@ -64,6 +58,10 @@
             this.btnExcluir = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnLimpar = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.fabricanteTableAdapter = new GGRefrigeracao.DBGGRefrigeracaoDataSetTableAdapters.FabricanteTableAdapter();
+            this.arTableAdapter = new GGRefrigeracao.DBGGRefrigeracaoDataSetTableAdapters.ArTableAdapter();
+            this.btuTableAdapter = new GGRefrigeracao.DBGGRefrigeracaoDataSetTableAdapters.BtuTableAdapter();
             nomeLabel = new System.Windows.Forms.Label();
             telefoneLabel = new System.Windows.Forms.Label();
             enderecoLabel = new System.Windows.Forms.Label();
@@ -80,6 +78,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.servicoBindingSource)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // nomeLabel
@@ -146,20 +145,6 @@
             this.clienteBindingSource.DataMember = "Cliente";
             this.clienteBindingSource.DataSource = this.dBGGRefrigeracaoDataSet;
             // 
-            // clienteTableAdapter
-            // 
-            this.clienteTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.ArTableAdapter = null;
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.BtuTableAdapter = null;
-            this.tableAdapterManager.ClienteTableAdapter = this.clienteTableAdapter;
-            this.tableAdapterManager.FabricanteTableAdapter = null;
-            this.tableAdapterManager.ServicoTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = GGRefrigeracao.DBGGRefrigeracaoDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.cmbNome);
@@ -183,7 +168,7 @@
             this.cmbNome.Location = new System.Drawing.Point(64, 22);
             this.cmbNome.Name = "cmbNome";
             this.cmbNome.Size = new System.Drawing.Size(422, 21);
-            this.cmbNome.TabIndex = 6;
+            this.cmbNome.TabIndex = 0;
             this.cmbNome.ValueMember = "Codigo";
             // 
             // enderecoTextBox
@@ -192,7 +177,7 @@
             this.enderecoTextBox.Location = new System.Drawing.Point(64, 88);
             this.enderecoTextBox.Name = "enderecoTextBox";
             this.enderecoTextBox.Size = new System.Drawing.Size(294, 20);
-            this.enderecoTextBox.TabIndex = 5;
+            this.enderecoTextBox.TabIndex = 2;
             // 
             // telefoneTextBox
             // 
@@ -200,7 +185,7 @@
             this.telefoneTextBox.Location = new System.Drawing.Point(64, 55);
             this.telefoneTextBox.Name = "telefoneTextBox";
             this.telefoneTextBox.Size = new System.Drawing.Size(100, 20);
-            this.telefoneTextBox.TabIndex = 3;
+            this.telefoneTextBox.TabIndex = 1;
             // 
             // groupBox2
             // 
@@ -223,7 +208,7 @@
             this.cmbBtu.Location = new System.Drawing.Point(95, 66);
             this.cmbBtu.Name = "cmbBtu";
             this.cmbBtu.Size = new System.Drawing.Size(121, 21);
-            this.cmbBtu.TabIndex = 6;
+            this.cmbBtu.TabIndex = 4;
             this.cmbBtu.ValueMember = "Codigo";
             // 
             // btuBindingSource
@@ -248,7 +233,7 @@
             this.cmbFabricante.Location = new System.Drawing.Point(69, 33);
             this.cmbFabricante.Name = "cmbFabricante";
             this.cmbFabricante.Size = new System.Drawing.Size(121, 21);
-            this.cmbFabricante.TabIndex = 1;
+            this.cmbFabricante.TabIndex = 3;
             this.cmbFabricante.ValueMember = "Codigo";
             // 
             // fabricanteBindingSource
@@ -261,26 +246,10 @@
             this.arBindingSource.DataMember = "Ar";
             this.arBindingSource.DataSource = this.dBGGRefrigeracaoDataSet;
             // 
-            // arTableAdapter
-            // 
-            this.arTableAdapter.ClearBeforeFill = true;
-            // 
-            // fabricanteTableAdapter
-            // 
-            this.fabricanteTableAdapter.ClearBeforeFill = true;
-            // 
-            // btuTableAdapter
-            // 
-            this.btuTableAdapter.ClearBeforeFill = true;
-            // 
             // servicoBindingSource
             // 
             this.servicoBindingSource.DataMember = "Servico";
             this.servicoBindingSource.DataSource = this.dBGGRefrigeracaoDataSet;
-            // 
-            // servicoTableAdapter
-            // 
-            this.servicoTableAdapter.ClearBeforeFill = true;
             // 
             // pickerData
             // 
@@ -300,7 +269,7 @@
             this.groupBox3.Controls.Add(this.groupBox1);
             this.groupBox3.Location = new System.Drawing.Point(11, 5);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(544, 280);
+            this.groupBox3.Size = new System.Drawing.Size(544, 270);
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             // 
@@ -310,14 +279,14 @@
             this.valorTextBox.Location = new System.Drawing.Point(336, 221);
             this.valorTextBox.Name = "valorTextBox";
             this.valorTextBox.Size = new System.Drawing.Size(100, 20);
-            this.valorTextBox.TabIndex = 6;
+            this.valorTextBox.TabIndex = 5;
             // 
             // btnInserir
             // 
             this.btnInserir.Location = new System.Drawing.Point(7, 19);
             this.btnInserir.Name = "btnInserir";
             this.btnInserir.Size = new System.Drawing.Size(75, 23);
-            this.btnInserir.TabIndex = 7;
+            this.btnInserir.TabIndex = 6;
             this.btnInserir.Text = "Inserir";
             this.btnInserir.UseVisualStyleBackColor = true;
             this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
@@ -327,7 +296,7 @@
             this.btnConsultar.Location = new System.Drawing.Point(7, 48);
             this.btnConsultar.Name = "btnConsultar";
             this.btnConsultar.Size = new System.Drawing.Size(75, 23);
-            this.btnConsultar.TabIndex = 8;
+            this.btnConsultar.TabIndex = 7;
             this.btnConsultar.Text = "Consultar";
             this.btnConsultar.UseVisualStyleBackColor = true;
             this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
@@ -337,18 +306,20 @@
             this.btnAlterar.Location = new System.Drawing.Point(7, 77);
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(75, 23);
-            this.btnAlterar.TabIndex = 9;
+            this.btnAlterar.TabIndex = 8;
             this.btnAlterar.Text = "Alterar";
             this.btnAlterar.UseVisualStyleBackColor = true;
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
             // btnExcluir
             // 
             this.btnExcluir.Location = new System.Drawing.Point(7, 110);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(75, 23);
-            this.btnExcluir.TabIndex = 10;
+            this.btnExcluir.TabIndex = 9;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // groupBox4
             // 
@@ -367,16 +338,38 @@
             this.btnLimpar.Location = new System.Drawing.Point(568, 157);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(75, 23);
-            this.btnLimpar.TabIndex = 12;
+            this.btnLimpar.TabIndex = 10;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.UseVisualStyleBackColor = true;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToOrderColumns = true;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(13, 281);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(637, 162);
+            this.dataGridView1.TabIndex = 13;
+            // 
+            // fabricanteTableAdapter
+            // 
+            this.fabricanteTableAdapter.ClearBeforeFill = true;
+            // 
+            // arTableAdapter
+            // 
+            this.arTableAdapter.ClearBeforeFill = true;
+            // 
+            // btuTableAdapter
+            // 
+            this.btuTableAdapter.ClearBeforeFill = true;
             // 
             // FServico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(662, 292);
+            this.ClientSize = new System.Drawing.Size(662, 455);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -396,6 +389,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -404,24 +398,18 @@
 
         private DBGGRefrigeracaoDataSet dBGGRefrigeracaoDataSet;
         private System.Windows.Forms.BindingSource clienteBindingSource;
-        private DBGGRefrigeracaoDataSetTableAdapters.ClienteTableAdapter clienteTableAdapter;
-        private DBGGRefrigeracaoDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox telefoneTextBox;
         private System.Windows.Forms.TextBox enderecoTextBox;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.BindingSource arBindingSource;
-        private DBGGRefrigeracaoDataSetTableAdapters.ArTableAdapter arTableAdapter;
         private System.Windows.Forms.ComboBox cmbFabricante;
         private System.Windows.Forms.BindingSource fabricanteBindingSource;
-        private DBGGRefrigeracaoDataSetTableAdapters.FabricanteTableAdapter fabricanteTableAdapter;
         private System.Windows.Forms.ComboBox cmbNome;
         private System.Windows.Forms.ComboBox cmbBtu;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.BindingSource btuBindingSource;
-        private DBGGRefrigeracaoDataSetTableAdapters.BtuTableAdapter btuTableAdapter;
         private System.Windows.Forms.BindingSource servicoBindingSource;
-        private DBGGRefrigeracaoDataSetTableAdapters.ServicoTableAdapter servicoTableAdapter;
         private System.Windows.Forms.DateTimePicker pickerData;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox valorTextBox;
@@ -431,5 +419,9 @@
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button btnLimpar;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private DBGGRefrigeracaoDataSetTableAdapters.FabricanteTableAdapter fabricanteTableAdapter;
+        private DBGGRefrigeracaoDataSetTableAdapters.ArTableAdapter arTableAdapter;
+        private DBGGRefrigeracaoDataSetTableAdapters.BtuTableAdapter btuTableAdapter;
     }
 }

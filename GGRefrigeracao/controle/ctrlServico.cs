@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static GGRefrigeracao.DBGGRefrigeracaoDataSet;
 
 namespace GGRefrigeracao.controle
 {
@@ -11,6 +12,7 @@ namespace GGRefrigeracao.controle
     {
 
         ServicoTableAdapter st = new ServicoTableAdapter();
+        ServicoDataTable stbl = new ServicoDataTable();
 
         public int Inserir(modelo.Servico s)
         {
@@ -57,7 +59,7 @@ namespace GGRefrigeracao.controle
             return rc;
         }
 
-        public void CarregarTabela()
+        /*public void CarregarTabela()
         {
             try
             {
@@ -67,6 +69,20 @@ namespace GGRefrigeracao.controle
             {
                 Console.WriteLine(ex.Message);
             }
+        } */
+
+        public ServicoDataTable CarregarTabela()
+        {
+            stbl.Clear();
+            try
+            {
+                st.Fill(stbl);
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return stbl;
         }
 
     }
