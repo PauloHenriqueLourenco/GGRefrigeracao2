@@ -11,30 +11,38 @@ namespace GGRefrigeracao.controle
 {
     class ctrlCliente
     {
-        ClienteTableAdapter ct = new ClienteTableAdapter();
-        ClienteDataTable ctbl = new ClienteDataTable();
+        ClienteTableAdapter ta = new ClienteTableAdapter();
+        ClienteDataTable tbl = new ClienteDataTable();
 
         public int Inserir(modelo.Cliente c)
         {
-            int rc = 0;
-            try
+            if (ta.GetCodigo(c.Telefone) != null)
             {
-                ct.Insert(c.Nome, c.Telefone, c.Endereco);
+                return int.Parse(ta.GetCodigo(c.Telefone).ToString());
             }
-            catch (System.Data.SqlClient.SqlException ex)
+            else
             {
-                rc = 1;
-                Console.WriteLine(ex.Message);
+                int rc = 0;
+                try
+                {
+                    ta.Insert(c.Nome, c.Telefone, c.Endereco);   
+                    rc = int.Parse(ta.GetCodigo(c.Telefone).ToString());
+                }
+                catch (System.Data.SqlClient.SqlException ex)
+                {
+                    rc = -1;
+                    Console.WriteLine(ex.Message);                    
+                }
+                return rc;
             }
-            return rc;
         }
 
-        public int Alterar(modelo.Cliente c)
+       /* public int Alterar(modelo.Cliente c)
         {
             int rc = 0;
             try
             {
-                ct.Update(c.Nome, c.Telefone, c.Endereco, c.Codigo);
+                ta.Update(c.Nome, c.Telefone, c.Endereco, c.Codigo);
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
@@ -42,14 +50,14 @@ namespace GGRefrigeracao.controle
                 Console.WriteLine(ex.Message);
             }
             return rc;
-        }
+        }*/
 
         public int Excluir(modelo.Cliente c)
         {
             int rc = 0;
             try
             {
-                ct.Delete(c.Codigo, c.Telefone);
+                ta.Delete(c.Codigo, c.Telefone);
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
@@ -61,43 +69,18 @@ namespace GGRefrigeracao.controle
 
         public ClienteDataTable CarregarTabela()
         {
-            ctbl.Clear();
+            tbl.Clear();
             try
             {
-                ct.Fill(ctbl);
+                ta.Fill(tbl);
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            return ctbl;
+            return tbl;
         }
 
-        public ClienteDataTable GetCodigo(modelo.Cliente c)
-        {
-            try
-            {
-                ct.FillConsulta(ctbl,c.Telefone,c.Nome,c.Endereco);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            return ctbl;
-        }
-
-        public int GetCodigo()
-        {
-            int codigoCliente = 0;
-            try
-            {
-                codigoCliente = int.Parse(ct.GetUltimoCodigo().ToString());
-            }
-            catch (System.Data.SqlClient.SqlException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }           
-            return codigoCliente;
-        }
+        
     }
 }

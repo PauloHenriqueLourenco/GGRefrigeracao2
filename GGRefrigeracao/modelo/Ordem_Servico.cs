@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace GGRefrigeracao.modelo
 {
-    class Ar
+    class Ordem_Servico
     {
         public int Codigo { get; set; }
-        public int CodigoFabricante { get; set; }
-        public int CodigoBtu { get; set; }
+        public int CodigoTipoServico { get; set; }
+        public int CodigoAr { get; set; }
+        public Decimal Valor { get; set; }
 
     }
 }

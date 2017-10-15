@@ -2,7 +2,7 @@
 {
 
 
-    public partial class DBGGRefrigeracaoDataSet
+    partial class DBGGRefrigeracaoDataSet
     {
     }
 }
@@ -10,6 +10,6 @@
 namespace GGRefrigeracao.DBGGRefrigeracaoDataSetTableAdapters {
     
     
-    public partial class ArTableAdapter {
+    public partial class ClienteTableAdapter {
     }
 }

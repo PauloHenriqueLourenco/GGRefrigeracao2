@@ -32,25 +32,22 @@
             System.Windows.Forms.Label nomeLabel;
             System.Windows.Forms.Label telefoneLabel;
             System.Windows.Forms.Label enderecoLabel;
-            System.Windows.Forms.Label codigoFabricanteLabel;
             System.Windows.Forms.Label dataLabel;
             System.Windows.Forms.Label valorLabel;
-            this.dBGGRefrigeracaoDataSet = new GGRefrigeracao.DBGGRefrigeracaoDataSet();
-            this.clienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            System.Windows.Forms.Label label2;
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cmbNome = new System.Windows.Forms.ComboBox();
+            this.nomeTextBox = new System.Windows.Forms.TextBox();
             this.enderecoTextBox = new System.Windows.Forms.TextBox();
             this.telefoneTextBox = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cmbBtu = new System.Windows.Forms.ComboBox();
-            this.btuBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label1 = new System.Windows.Forms.Label();
-            this.cmbFabricante = new System.Windows.Forms.ComboBox();
-            this.fabricanteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.arBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.servicoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dBGGRefrigeracaoDataSet = new GGRefrigeracao.DBGGRefrigeracaoDataSet();
+            this.label1 = new System.Windows.Forms.Label();
             this.pickerData = new System.Windows.Forms.DateTimePicker();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cmbServico = new System.Windows.Forms.ComboBox();
+            this.tipoServicoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.valorTextBox = new System.Windows.Forms.TextBox();
             this.btnInserir = new System.Windows.Forms.Button();
             this.btnConsultar = new System.Windows.Forms.Button();
@@ -58,27 +55,32 @@
             this.btnExcluir = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnLimpar = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.fabricanteTableAdapter = new GGRefrigeracao.DBGGRefrigeracaoDataSetTableAdapters.FabricanteTableAdapter();
+            this.listaServicos = new System.Windows.Forms.DataGridView();
+            this.nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.telefone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.endereco = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.servico = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.data = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAdicionar = new System.Windows.Forms.Button();
+            this.tipo_ServicoTableAdapter = new GGRefrigeracao.DBGGRefrigeracaoDataSetTableAdapters.Tipo_ServicoTableAdapter();
             this.arTableAdapter = new GGRefrigeracao.DBGGRefrigeracaoDataSetTableAdapters.ArTableAdapter();
-            this.btuTableAdapter = new GGRefrigeracao.DBGGRefrigeracaoDataSetTableAdapters.BtuTableAdapter();
+            this.button1 = new System.Windows.Forms.Button();
             nomeLabel = new System.Windows.Forms.Label();
             telefoneLabel = new System.Windows.Forms.Label();
             enderecoLabel = new System.Windows.Forms.Label();
-            codigoFabricanteLabel = new System.Windows.Forms.Label();
             dataLabel = new System.Windows.Forms.Label();
             valorLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dBGGRefrigeracaoDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).BeginInit();
+            label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btuBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fabricanteBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.arBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.servicoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBGGRefrigeracaoDataSet)).BeginInit();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoServicoBindingSource)).BeginInit();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listaServicos)).BeginInit();
             this.SuspendLayout();
             // 
             // nomeLabel
@@ -108,15 +110,6 @@
             enderecoLabel.TabIndex = 4;
             enderecoLabel.Text = "Endereco:";
             // 
-            // codigoFabricanteLabel
-            // 
-            codigoFabricanteLabel.AutoSize = true;
-            codigoFabricanteLabel.Location = new System.Drawing.Point(6, 36);
-            codigoFabricanteLabel.Name = "codigoFabricanteLabel";
-            codigoFabricanteLabel.Size = new System.Drawing.Size(57, 13);
-            codigoFabricanteLabel.TabIndex = 0;
-            codigoFabricanteLabel.Text = "Fabricante";
-            // 
             // dataLabel
             // 
             dataLabel.AutoSize = true;
@@ -129,51 +122,45 @@
             // valorLabel
             // 
             valorLabel.AutoSize = true;
-            valorLabel.Location = new System.Drawing.Point(256, 225);
+            valorLabel.Location = new System.Drawing.Point(256, 226);
             valorLabel.Name = "valorLabel";
             valorLabel.Size = new System.Drawing.Size(74, 13);
             valorLabel.TabIndex = 5;
             valorLabel.Text = "Valor Cobrado";
             // 
-            // dBGGRefrigeracaoDataSet
+            // label2
             // 
-            this.dBGGRefrigeracaoDataSet.DataSetName = "DBGGRefrigeracaoDataSet";
-            this.dBGGRefrigeracaoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // clienteBindingSource
-            // 
-            this.clienteBindingSource.DataMember = "Cliente";
-            this.clienteBindingSource.DataSource = this.dBGGRefrigeracaoDataSet;
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(256, 201);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(85, 13);
+            label2.TabIndex = 7;
+            label2.Text = "Tipo de Serviço:";
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.cmbNome);
+            this.groupBox1.Controls.Add(this.nomeTextBox);
             this.groupBox1.Controls.Add(enderecoLabel);
             this.groupBox1.Controls.Add(this.enderecoTextBox);
             this.groupBox1.Controls.Add(telefoneLabel);
             this.groupBox1.Controls.Add(this.telefoneTextBox);
             this.groupBox1.Controls.Add(nomeLabel);
-            this.groupBox1.Location = new System.Drawing.Point(6, 19);
+            this.groupBox1.Location = new System.Drawing.Point(6, 15);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(518, 134);
+            this.groupBox1.Size = new System.Drawing.Size(948, 134);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cliente";
             // 
-            // cmbNome
+            // nomeTextBox
             // 
-            this.cmbNome.DataSource = this.clienteBindingSource;
-            this.cmbNome.DisplayMember = "Nome";
-            this.cmbNome.FormattingEnabled = true;
-            this.cmbNome.Location = new System.Drawing.Point(64, 22);
-            this.cmbNome.Name = "cmbNome";
-            this.cmbNome.Size = new System.Drawing.Size(422, 21);
-            this.cmbNome.TabIndex = 0;
-            this.cmbNome.ValueMember = "Codigo";
+            this.nomeTextBox.Location = new System.Drawing.Point(64, 22);
+            this.nomeTextBox.Name = "nomeTextBox";
+            this.nomeTextBox.Size = new System.Drawing.Size(454, 20);
+            this.nomeTextBox.TabIndex = 0;
             // 
             // enderecoTextBox
             // 
-            this.enderecoTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clienteBindingSource, "Endereco", true));
             this.enderecoTextBox.Location = new System.Drawing.Point(64, 88);
             this.enderecoTextBox.Name = "enderecoTextBox";
             this.enderecoTextBox.Size = new System.Drawing.Size(294, 20);
@@ -181,7 +168,6 @@
             // 
             // telefoneTextBox
             // 
-            this.telefoneTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clienteBindingSource, "Telefone", true));
             this.telefoneTextBox.Location = new System.Drawing.Point(64, 55);
             this.telefoneTextBox.Name = "telefoneTextBox";
             this.telefoneTextBox.Size = new System.Drawing.Size(100, 20);
@@ -191,102 +177,96 @@
             // 
             this.groupBox2.Controls.Add(this.cmbBtu);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.cmbFabricante);
-            this.groupBox2.Controls.Add(codigoFabricanteLabel);
-            this.groupBox2.Location = new System.Drawing.Point(6, 159);
+            this.groupBox2.Location = new System.Drawing.Point(6, 170);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(244, 101);
+            this.groupBox2.Size = new System.Drawing.Size(244, 68);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ar Condicionado";
             // 
             // cmbBtu
             // 
-            this.cmbBtu.DataSource = this.btuBindingSource;
-            this.cmbBtu.DisplayMember = "Capacidade";
+            this.cmbBtu.DataSource = this.arBindingSource;
+            this.cmbBtu.DisplayMember = "capacidade";
             this.cmbBtu.FormattingEnabled = true;
-            this.cmbBtu.Location = new System.Drawing.Point(95, 66);
+            this.cmbBtu.Location = new System.Drawing.Point(97, 34);
             this.cmbBtu.Name = "cmbBtu";
             this.cmbBtu.Size = new System.Drawing.Size(121, 21);
-            this.cmbBtu.TabIndex = 4;
-            this.cmbBtu.ValueMember = "Codigo";
-            // 
-            // btuBindingSource
-            // 
-            this.btuBindingSource.DataMember = "Btu";
-            this.btuBindingSource.DataSource = this.dBGGRefrigeracaoDataSet;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 69);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Capacidade Btu";
-            // 
-            // cmbFabricante
-            // 
-            this.cmbFabricante.DataSource = this.fabricanteBindingSource;
-            this.cmbFabricante.DisplayMember = "Descricao";
-            this.cmbFabricante.FormattingEnabled = true;
-            this.cmbFabricante.Location = new System.Drawing.Point(69, 33);
-            this.cmbFabricante.Name = "cmbFabricante";
-            this.cmbFabricante.Size = new System.Drawing.Size(121, 21);
-            this.cmbFabricante.TabIndex = 3;
-            this.cmbFabricante.ValueMember = "Codigo";
-            // 
-            // fabricanteBindingSource
-            // 
-            this.fabricanteBindingSource.DataMember = "Fabricante";
-            this.fabricanteBindingSource.DataSource = this.dBGGRefrigeracaoDataSet;
+            this.cmbBtu.TabIndex = 3;
+            this.cmbBtu.ValueMember = "codigo";
             // 
             // arBindingSource
             // 
             this.arBindingSource.DataMember = "Ar";
             this.arBindingSource.DataSource = this.dBGGRefrigeracaoDataSet;
             // 
-            // servicoBindingSource
+            // dBGGRefrigeracaoDataSet
             // 
-            this.servicoBindingSource.DataMember = "Servico";
-            this.servicoBindingSource.DataSource = this.dBGGRefrigeracaoDataSet;
+            this.dBGGRefrigeracaoDataSet.DataSetName = "DBGGRefrigeracaoDataSet";
+            this.dBGGRefrigeracaoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(8, 37);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(83, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Capacidade Btu";
             // 
             // pickerData
             // 
-            this.pickerData.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.servicoBindingSource, "Data", true));
             this.pickerData.Location = new System.Drawing.Point(295, 170);
             this.pickerData.Name = "pickerData";
             this.pickerData.Size = new System.Drawing.Size(229, 20);
-            this.pickerData.TabIndex = 5;
+            this.pickerData.TabIndex = 4;
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(label2);
+            this.groupBox3.Controls.Add(this.cmbServico);
             this.groupBox3.Controls.Add(valorLabel);
             this.groupBox3.Controls.Add(this.valorTextBox);
             this.groupBox3.Controls.Add(dataLabel);
             this.groupBox3.Controls.Add(this.pickerData);
             this.groupBox3.Controls.Add(this.groupBox2);
             this.groupBox3.Controls.Add(this.groupBox1);
-            this.groupBox3.Location = new System.Drawing.Point(11, 5);
+            this.groupBox3.Location = new System.Drawing.Point(12, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(544, 270);
+            this.groupBox3.Size = new System.Drawing.Size(960, 263);
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             // 
+            // cmbServico
+            // 
+            this.cmbServico.DataSource = this.tipoServicoBindingSource;
+            this.cmbServico.DisplayMember = "descricao";
+            this.cmbServico.FormattingEnabled = true;
+            this.cmbServico.Location = new System.Drawing.Point(347, 196);
+            this.cmbServico.Name = "cmbServico";
+            this.cmbServico.Size = new System.Drawing.Size(147, 21);
+            this.cmbServico.TabIndex = 5;
+            this.cmbServico.ValueMember = "codigo";
+            // 
+            // tipoServicoBindingSource
+            // 
+            this.tipoServicoBindingSource.DataMember = "Tipo_Servico";
+            this.tipoServicoBindingSource.DataSource = this.dBGGRefrigeracaoDataSet;
+            // 
             // valorTextBox
             // 
-            this.valorTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.servicoBindingSource, "Valor", true));
-            this.valorTextBox.Location = new System.Drawing.Point(336, 221);
+            this.valorTextBox.Location = new System.Drawing.Point(347, 223);
             this.valorTextBox.Name = "valorTextBox";
+            this.valorTextBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.valorTextBox.Size = new System.Drawing.Size(100, 20);
-            this.valorTextBox.TabIndex = 5;
+            this.valorTextBox.TabIndex = 6;
             // 
             // btnInserir
             // 
             this.btnInserir.Location = new System.Drawing.Point(7, 19);
             this.btnInserir.Name = "btnInserir";
             this.btnInserir.Size = new System.Drawing.Size(75, 23);
-            this.btnInserir.TabIndex = 6;
+            this.btnInserir.TabIndex = 8;
             this.btnInserir.Text = "Inserir";
             this.btnInserir.UseVisualStyleBackColor = true;
             this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
@@ -327,7 +307,7 @@
             this.groupBox4.Controls.Add(this.btnAlterar);
             this.groupBox4.Controls.Add(this.btnConsultar);
             this.groupBox4.Controls.Add(this.btnInserir);
-            this.groupBox4.Location = new System.Drawing.Point(561, 5);
+            this.groupBox4.Location = new System.Drawing.Point(978, 12);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(88, 146);
             this.groupBox4.TabIndex = 11;
@@ -335,7 +315,7 @@
             // 
             // btnLimpar
             // 
-            this.btnLimpar.Location = new System.Drawing.Point(568, 157);
+            this.btnLimpar.Location = new System.Drawing.Point(985, 164);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(75, 23);
             this.btnLimpar.TabIndex = 10;
@@ -343,73 +323,129 @@
             this.btnLimpar.UseVisualStyleBackColor = true;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
-            // dataGridView1
+            // listaServicos
             // 
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(13, 281);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(637, 162);
-            this.dataGridView1.TabIndex = 13;
+            this.listaServicos.AllowUserToAddRows = false;
+            this.listaServicos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.listaServicos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.nome,
+            this.telefone,
+            this.endereco,
+            this.servico,
+            this.btu,
+            this.data,
+            this.valor});
+            this.listaServicos.Location = new System.Drawing.Point(12, 281);
+            this.listaServicos.Name = "listaServicos";
+            this.listaServicos.Size = new System.Drawing.Size(960, 148);
+            this.listaServicos.TabIndex = 12;
             // 
-            // fabricanteTableAdapter
+            // nome
             // 
-            this.fabricanteTableAdapter.ClearBeforeFill = true;
+            this.nome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nome.HeaderText = "Nome";
+            this.nome.Name = "nome";
+            // 
+            // telefone
+            // 
+            this.telefone.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.telefone.HeaderText = "Telefone";
+            this.telefone.Name = "telefone";
+            // 
+            // endereco
+            // 
+            this.endereco.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.endereco.HeaderText = "Endereço";
+            this.endereco.Name = "endereco";
+            // 
+            // servico
+            // 
+            this.servico.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.servico.HeaderText = "Serviço";
+            this.servico.Name = "servico";
+            // 
+            // btu
+            // 
+            this.btu.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.btu.HeaderText = "Capacidade BTU";
+            this.btu.Name = "btu";
+            // 
+            // data
+            // 
+            this.data.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.data.HeaderText = "Data";
+            this.data.Name = "data";
+            // 
+            // valor
+            // 
+            this.valor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.valor.HeaderText = "Valor Cobrado";
+            this.valor.Name = "valor";
+            // 
+            // btnAdicionar
+            // 
+            this.btnAdicionar.Location = new System.Drawing.Point(985, 235);
+            this.btnAdicionar.Name = "btnAdicionar";
+            this.btnAdicionar.Size = new System.Drawing.Size(75, 23);
+            this.btnAdicionar.TabIndex = 7;
+            this.btnAdicionar.Text = "Adicionar";
+            this.btnAdicionar.UseVisualStyleBackColor = true;
+            this.btnAdicionar.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // tipo_ServicoTableAdapter
+            // 
+            this.tipo_ServicoTableAdapter.ClearBeforeFill = true;
             // 
             // arTableAdapter
             // 
             this.arTableAdapter.ClearBeforeFill = true;
             // 
-            // btuTableAdapter
+            // button1
             // 
-            this.btuTableAdapter.ClearBeforeFill = true;
+            this.button1.Location = new System.Drawing.Point(991, 313);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // FServico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(662, 455);
-            this.Controls.Add(this.dataGridView1);
+            this.ClientSize = new System.Drawing.Size(1077, 436);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnAdicionar);
+            this.Controls.Add(this.listaServicos);
             this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Name = "FServico";
             this.Text = "FServico";
             this.Load += new System.EventHandler(this.FServico_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dBGGRefrigeracaoDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btuBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fabricanteBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.arBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.servicoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBGGRefrigeracaoDataSet)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoServicoBindingSource)).EndInit();
             this.groupBox4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listaServicos)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private DBGGRefrigeracaoDataSet dBGGRefrigeracaoDataSet;
-        private System.Windows.Forms.BindingSource clienteBindingSource;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox telefoneTextBox;
         private System.Windows.Forms.TextBox enderecoTextBox;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.BindingSource arBindingSource;
-        private System.Windows.Forms.ComboBox cmbFabricante;
-        private System.Windows.Forms.BindingSource fabricanteBindingSource;
-        private System.Windows.Forms.ComboBox cmbNome;
         private System.Windows.Forms.ComboBox cmbBtu;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.BindingSource btuBindingSource;
-        private System.Windows.Forms.BindingSource servicoBindingSource;
         private System.Windows.Forms.DateTimePicker pickerData;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox valorTextBox;
@@ -419,9 +455,22 @@
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button btnLimpar;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private DBGGRefrigeracaoDataSetTableAdapters.FabricanteTableAdapter fabricanteTableAdapter;
+        private System.Windows.Forms.DataGridView listaServicos;
+        private System.Windows.Forms.Button btnAdicionar;
+        private System.Windows.Forms.ComboBox cmbServico;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nome;
+        private System.Windows.Forms.DataGridViewTextBoxColumn telefone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn endereco;
+        private System.Windows.Forms.DataGridViewTextBoxColumn servico;
+        private System.Windows.Forms.DataGridViewTextBoxColumn btu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn data;
+        private System.Windows.Forms.DataGridViewTextBoxColumn valor;
+        private System.Windows.Forms.TextBox nomeTextBox;
+        private DBGGRefrigeracaoDataSet dBGGRefrigeracaoDataSet;
+        private System.Windows.Forms.BindingSource tipoServicoBindingSource;
+        private DBGGRefrigeracaoDataSetTableAdapters.Tipo_ServicoTableAdapter tipo_ServicoTableAdapter;
+        private System.Windows.Forms.BindingSource arBindingSource;
         private DBGGRefrigeracaoDataSetTableAdapters.ArTableAdapter arTableAdapter;
-        private DBGGRefrigeracaoDataSetTableAdapters.BtuTableAdapter btuTableAdapter;
+        private System.Windows.Forms.Button button1;
     }
 }

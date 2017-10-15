@@ -45,9 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="controle\ctrlAr.cs" />
     <Compile Include="controle\ctrlCliente.cs" />
+    <Compile Include="controle\ctrlOrdem_Servico.cs" />
     <Compile Include="controle\ctrlServico.cs" />
+    <Compile Include="controle\ctrlServico_Ordem_Servico.cs" />
     <Compile Include="DBGGRefrigeracaoDataSet.cs">
       <DependentUpon>DBGGRefrigeracaoDataSet.xsd</DependentUpon>
     </Compile>
@@ -62,20 +63,30 @@
     <Compile Include="FCliente.Designer.cs">
       <DependentUpon>FCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="modelo\Ar.cs" />
     <Compile Include="modelo\Cliente.cs" />
+    <Compile Include="modelo\FRelatorio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="modelo\FRelatorio.Designer.cs">
+      <DependentUpon>FRelatorio.cs</DependentUpon>
+    </Compile>
     <Compile Include="modelo\FServico.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="modelo\FServico.Designer.cs">
       <DependentUpon>FServico.cs</DependentUpon>
     </Compile>
+    <Compile Include="modelo\Ordem_Servico.cs" />
     <Compile Include="modelo\Servico.cs" />
+    <Compile Include="modelo\Servico_Ordem_Servico.cs" />
     <Compile Include="modelo\Usuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FCliente.resx">
       <DependentUpon>FCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="modelo\FRelatorio.resx">
+      <DependentUpon>FRelatorio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="modelo\FServico.resx">
       <DependentUpon>FServico.cs</DependentUpon>

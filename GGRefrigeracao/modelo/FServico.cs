@@ -21,18 +21,19 @@ namespace GGRefrigeracao.modelo
 
         Cliente c = new Cliente();
         Servico s = new Servico();
-        Ar a = new Ar();
+        Ordem_Servico os = new Ordem_Servico();
+        Servico_Ordem_Servico sos = new Servico_Ordem_Servico();
 
         controle.ctrlCliente ctrlC = new controle.ctrlCliente();
         controle.ctrlServico ctrlS = new controle.ctrlServico();
-        controle.ctrlAr ctrlA = new controle.ctrlAr();
+        controle.ctrlOrdem_Servico ctrlOS = new controle.ctrlOrdem_Servico();
+        controle.ctrlServico_Ordem_Servico ctrlSOS = new controle.ctrlServico_Ordem_Servico();
 
         private void Limpar()
-        {            
-            cmbNome.SelectedIndex = -1;
+        {
+            nomeTextBox.Clear();
             telefoneTextBox.Clear();
             enderecoTextBox.Clear();
-            cmbFabricante.SelectedIndex = -1;
             cmbBtu.SelectedIndex = -1;
             pickerData.Value = DateTime.Now;
             valorTextBox.Clear();            
@@ -40,47 +41,46 @@ namespace GGRefrigeracao.modelo
         
         private void GetCampos()
         {
-            DataGridView dt = new DataGridView();
-            dt.DataSource = ctrlC.GetCodigo(c);
-            c.Nome = cmbNome.Text;
+            c.Nome = nomeTextBox.Text;
             c.Telefone = telefoneTextBox.Text;
             c.Endereco = enderecoTextBox.Text;
-            ClienteDataTable cTable = ctrlC.GetCodigo(c);
-            if (cTable.Rows.Count == 0)
-                c.Codigo = ctrlC.GetCodigo();
-            else
-            {
-                FCliente fc = new FCliente(cTable);
-                fc.Show();                
-            }        
-
-            a.CodigoFabricante = int.Parse(cmbFabricante.SelectedValue.ToString());
-            a.CodigoBtu = int.Parse(cmbBtu.SelectedValue.ToString());
-            a.Codigo = ctrlA.GetCodigo(a);
+            s.Data = pickerData.Value;
+            os.Valor = Decimal.Parse(valorTextBox.Text);
         }
 
         private void FServico_Load(object sender, EventArgs e)
         {
-            this.btuTableAdapter.Fill(this.dBGGRefrigeracaoDataSet.Btu);
-            this.fabricanteTableAdapter.Fill(this.dBGGRefrigeracaoDataSet.Fabricante);
+            // TODO: esta linha de código carrega dados na tabela 'dBGGRefrigeracaoDataSet.Ar'. Você pode movê-la ou removê-la conforme necessário.
+            this.arTableAdapter.Fill(this.dBGGRefrigeracaoDataSet.Ar);
+            // TODO: esta linha de código carrega dados na tabela 'dBGGRefrigeracaoDataSet.Tipo_Servico'. Você pode movê-la ou removê-la conforme necessário.
+            this.tipo_ServicoTableAdapter.Fill(this.dBGGRefrigeracaoDataSet.Tipo_Servico);
+            // TODO: esta linha de código carrega dados na tabela 'dBGGRefrigeracaoDataSet.Btu'. Você pode movê-la ou removê-la conforme necessário.            
         }
 
         private void btnInserir_Click(object sender, EventArgs e)
         {
-            c.Nome = cmbNome.Text;
-            c.Telefone = telefoneTextBox.Text;
-            c.Endereco = enderecoTextBox.Text;
-            s.Endereco = c.Endereco;
-            s.CodigoAr = int.Parse(arTableAdapter.GetCodigoAr(int.Parse(cmbFabricante.SelectedValue.ToString()),int.Parse(cmbBtu.SelectedValue.ToString())).ToString());
-            s.CodigoCliente = ctrlC.GetCodigo();
-            s.Data = pickerData.Value;
-            s.Valor = int.Parse(valorTextBox.Text);
-            ctrlC.Inserir(c);
-            int erro = ctrlS.Inserir(s);
-            if (erro == 0)
+            foreach (DataGridViewRow row in listaServicos.Rows)
             {
-                MessageBox.Show("Serviço registrado com êxito");
-                Limpar();
+                c.Nome = row.Cells[0].Value.ToString();
+                c.Telefone = row.Cells[1].Value.ToString();   // Carregando Cliente
+                c.Endereco = row.Cells[2].Value.ToString();
+
+                int codigo_cliente = ctrlC.Inserir(c);
+                if (codigo_cliente > 0)
+                {
+                    s.CodigoCliente = codigo_cliente;
+                    s.Data = DateTime.Parse(row.Cells[5].Value.ToString()).Date;  // Carregando Serviço
+                    
+                    os.CodigoTipoServico = ctrlOS.GetCodigoTipoServico(row.Cells[3].Value.ToString());  
+                    os.CodigoAr = ctrlOS.GetCodigoAr(row.Cells[4].Value.ToString());                         // Carregando Ordem_Servico
+                    os.Valor = Decimal.Parse(row.Cells[6].Value.ToString());
+
+                    sos.CodigoServico = ctrlS.Inserir(s);
+                    sos.CodigoOrdemServico = ctrlOS.Inserir(os);
+
+                    ctrlSOS.Inserir(sos);
+                }
+
             }
         }
 
@@ -91,29 +91,29 @@ namespace GGRefrigeracao.modelo
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = ctrlS.CarregarTabela();      
+            
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            int codigo = int.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString());
-            DialogResult resp = MessageBox.Show("Tem certeza que deseja excluir o serviço "+codigo+" ?","Confirma",MessageBoxButtons.YesNo);
-            if (resp == DialogResult.Yes)
-            {
-                s.Codigo = codigo; 
-                int erro = ctrlS.Excluir(s);
-                if (erro == 0)
-                {
-                    MessageBox.Show("Exclusão de serviço realizada com êxito");
-                    dataGridView1.DataSource = ctrlS.CarregarTabela();
-                    Limpar();
-                }
-            }            
+                        
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
             GetCampos();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            GetCampos();
+            listaServicos.Rows.Add(c.Nome, c.Telefone, c.Endereco, cmbServico.Text, cmbBtu.Text, s.Data, os.Valor);            
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            FRelatorio fr = new FRelatorio();
+            fr.Show();
         }
     }
 }

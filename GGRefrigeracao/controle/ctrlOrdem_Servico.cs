@@ -4,41 +4,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using static GGRefrigeracao.DBGGRefrigeracaoDataSet;
 
 namespace GGRefrigeracao.controle
 {
-    class ctrlServico
+    class ctrlOrdem_Servico
     {
+        Ordem_ServicoTableAdapter ta = new Ordem_ServicoTableAdapter();
+        Ordem_ServicoDataTable tbl = new Ordem_ServicoDataTable();
+        Tipo_ServicoTableAdapter tsta = new Tipo_ServicoTableAdapter();
+        ArTableAdapter ata = new ArTableAdapter();
 
-        ServicoTableAdapter ta = new ServicoTableAdapter();
-        ServicoDataTable tbl = new ServicoDataTable();
-
-        public int Inserir(modelo.Servico s)
+        public int Inserir(modelo.Ordem_Servico os)
         {
-            if (ta.GetCodigo(s.CodigoCliente,s.Data.Date) != null)
+            int rc = 0;
+            try
             {
-                return int.Parse(ta.GetCodigo(s.CodigoCliente,s.Data.Date).ToString());
+                rc = int.Parse(ta.InsertQuery(os.CodigoTipoServico,os.CodigoAr,os.Valor).ToString());
             }
-            else
+            catch (System.Data.SqlClient.SqlException ex)
             {
-                int rc = 0;
-                try
-                {
-                    ta.Insert(s.CodigoCliente, s.Data.Date);
-                    rc = int.Parse(ta.GetCodigo(s.CodigoCliente, s.Data.Date).ToString());
-                }
-                catch (System.Data.SqlClient.SqlException ex)
-                {
-                    rc = -1;
-                    Console.WriteLine(ex.Message);                    
-                }
-                return rc;
+                rc = -1;
+                Console.WriteLine(ex.Message);
             }
+            return rc;
         }
 
-        public int Alterar(modelo.Servico s)
+        public int Alterar(modelo.Ordem_Servico os)
         {
             int rc = 0;
             try
@@ -53,12 +45,12 @@ namespace GGRefrigeracao.controle
             return rc;
         }
 
-        public int Excluir(modelo.Servico s)
+        public int Excluir(modelo.Ordem_Servico os)
         {
             int rc = 0;
             try
             {
-                ta.Delete(s.Codigo,s.CodigoCliente);
+                ta.Delete(os.Codigo,os.CodigoTipoServico,os.CodigoAr,os.Valor);
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
@@ -80,7 +72,7 @@ namespace GGRefrigeracao.controle
             }
         } */
 
-        public ServicoDataTable CarregarTabela()
+        public Ordem_ServicoDataTable CarregarTabela()
         {
             tbl.Clear();
             try
@@ -94,18 +86,35 @@ namespace GGRefrigeracao.controle
             return tbl;
         }
 
-        public ServicoDataTable GetServicos()
+        public int GetCodigoTipoServico(string descricao)
         {
-            tbl.Clear();
+            int rc = 0;
             try
             {
-                ta.FillByServicos(tbl);
+                rc = int.Parse(tsta.GetCodigo(descricao).ToString());
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
+                rc = -1;
                 Console.WriteLine(ex.Message);
             }
-            return tbl;
+            return rc;
         }
+
+        public int GetCodigoAr(string descricao)
+        {
+            int rc = 0;
+            try
+            {
+                rc = int.Parse(ata.GetCodigo(descricao).ToString());
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                rc = -1;
+                Console.WriteLine(ex.Message);
+            }
+            return rc;
+        }
+
     }
 }

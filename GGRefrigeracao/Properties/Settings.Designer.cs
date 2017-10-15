@@ -56,5 +56,15 @@ namespace GGRefrigeracao.Properties {
                 return ((string)(this["DBGGRefrigeracaoConnectionString1"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=PAULO;Initial Catalog=DBGGRefrigeracao;Integrated Security=True")]
+        public string DBGGRefrigeracaoConnectionString2 {
+            get {
+                return ((string)(this["DBGGRefrigeracaoConnectionString2"]));
+            }
+        }
     }
 }

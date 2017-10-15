@@ -8,3 +8,4 @@ C:\Users\paulo\Documents\Visual Studio 2017\Projects\GGRefrigeracao\GGRefrigerac
 C:\Users\paulo\Documents\Visual Studio 2017\Projects\GGRefrigeracao\GGRefrigeracao\obj\Debug\GGRefrigeracao.pdb
 C:\Users\paulo\documents\visual studio 2017\Projects\GGRefrigeracao\GGRefrigeracao\obj\Debug\GGRefrigeracao.modelo.FServico.resources
 C:\Users\paulo\documents\visual studio 2017\Projects\GGRefrigeracao\GGRefrigeracao\obj\Debug\GGRefrigeracao.FCliente.resources
+C:\Users\paulo\Documents\Visual Studio 2017\Projects\GGRefrigeracao\GGRefrigeracao\obj\Debug\GGRefrigeracao.modelo.FRelatorio.resources

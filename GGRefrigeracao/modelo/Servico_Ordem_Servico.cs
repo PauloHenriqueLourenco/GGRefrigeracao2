@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace GGRefrigeracao.modelo
 {
-    class Servico
+    class Servico_Ordem_Servico
     {
-        public int Codigo { get; set; }
-        public int CodigoCliente { get; set; } 
-        public DateTime Data { get; set; } 
+        public int CodigoServico { get; set; }
+        public int CodigoOrdemServico { get; set; }
+
     }
 }
