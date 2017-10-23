@@ -106,7 +106,6 @@
     </None>
     <None Include="DBGGRefrigeracaoDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DBGGRefrigeracaoDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="DBGGRefrigeracaoDataSet.xss">

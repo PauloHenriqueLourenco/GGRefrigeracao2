@@ -188,6 +188,7 @@
             // 
             this.cmbBtu.DataSource = this.arBindingSource;
             this.cmbBtu.DisplayMember = "capacidade";
+            this.cmbBtu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbBtu.FormattingEnabled = true;
             this.cmbBtu.Location = new System.Drawing.Point(97, 34);
             this.cmbBtu.Name = "cmbBtu";
@@ -241,6 +242,7 @@
             // 
             this.cmbServico.DataSource = this.tipoServicoBindingSource;
             this.cmbServico.DisplayMember = "descricao";
+            this.cmbServico.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbServico.FormattingEnabled = true;
             this.cmbServico.Location = new System.Drawing.Point(347, 196);
             this.cmbServico.Name = "cmbServico";
